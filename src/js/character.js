@@ -1,46 +1,46 @@
 export default class Character {
-    constructor(name, type) {
-        const typesPerson = [
-            'Bowman',
-            'Swordsman',
-            'Magician',
-            'Daemon',
-            'Undead',
-            'Zombie'
-        ];
+  constructor(name, type) {
+    const typesPerson = [
+      'Bowman',
+      'Swordsman',
+      'Magician',
+      'Daemon',
+      'Undead',
+      'Zombie',
+    ];
 
-        if (typeof name === 'string' && name.length >= 2 && name.length <= 10) {
-            this.name = name;
-        } else {
-            throw new Error('Ошибка! Имя должно быть строкой, а также быть длиной от 2 до 10 символов!');
-        }
-
-        if (!typesPerson.includes(type)) {
-            throw new Error('Ошибка! Такого типа персонажа не существует!');
-        } else {
-            this.type = type;
-        }
-
-        this.health = 100;
-        this.level = 1;
+    if (typeof name === 'string' && name.length >= 2 && name.length <= 10) {
+      this.name = name;
+    } else {
+      throw new Error('Ошибка! Имя должно быть строкой, а также быть длиной от 2 до 10 символов!');
     }
 
-    levelUp() {
-        if (this.health !== 0) {
-            this.level += 1;
-            this.attack += this.attack * 0.2;
-            this.defence += this.defence * 0.2;
-            this.health = 100;
-        } else {
-            throw new Error('Нельзя повысить левел умершего!');
-        }
+    if (!typesPerson.includes(type)) {
+      throw new Error('Ошибка! Такого типа персонажа не существует!');
+    } else {
+      this.type = type;
     }
 
-    damage(points) {
-        if (this.health > 0) {
-            this.health -= points * (1 - this.defence / 100);
-        } else {
-            throw new Error('Нельзя нанести вред умершему персонажу!');
-        }
+    this.health = 100;
+    this.level = 1;
+  }
+
+  levelUp() {
+    if (this.health !== 0) {
+      this.level += 1;
+      this.attack += this.attack * 0.2;
+      this.defence += this.defence * 0.2;
+      this.health = 100;
+    } else {
+      throw new Error('Нельзя повысить левел умершего!');
     }
+  }
+
+  damage(points) {
+    if (this.health > 0) {
+      this.health -= points * (1 - this.defence / 100);
+    } else {
+      throw new Error('Нельзя нанести вред умершему персонажу!');
+    }
+  }
 }
